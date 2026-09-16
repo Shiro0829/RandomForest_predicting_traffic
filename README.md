@@ -21,7 +21,7 @@ Read this part carefully, because it changes how you should spend your time.
 
 This is **not** a machine learning course, and this is not an assignment about producing a hyper-optimised model. Your work is measured, and you will get a real score back. But the goal is not to squeeze out the last two points of F1, and if you find yourself building an eight-hour grid search, you have misread the assignment.
 
-Note also that submissions are made through the course portal and are **limited in number**. The portal shows you how many attempts you have and how many you have used, so check it before you plan your week. You have enough to work with, but the autograder is not your development loop. Do your iterating locally, where attempts are free, and spend your submissions on configurations you already have reason to believe in. See "Testing Locally" for how to build a validation setup worth trusting.
+Note also that **submissions are unlimited**. You may submit as many times as you like. That said, the autograder is not your development loop — iterating locally is faster, costs you nothing, and teaches you more. Do your tuning locally, where feedback is instant, and use submissions to confirm configurations you already have reason to believe in. See "Testing Locally" for how to build a validation setup worth trusting.
 
 What you are being asked to understand is **where a model like this one fits in**. You are working through a progression: hand-written rules last week, a learned model this week, and AI systems later in the course. Each layer is a different tool for the same underlying job, but perhaps different aspects of it (network detection), and each has a shape of problem it suits and a shape it does not. So as you work, keep three questions open:
 
@@ -33,7 +33,7 @@ That last one is the heart of it. A security engineer who cannot tell a good mod
 
 That said, **you are expected to tune**. A model left entirely at its defaults will show you nothing interesting and will not score well. The point is deliberate, informed adjustment where you can say what each change did and why, not exhaustive search. Parameters worth experimenting with: `max_depth`, `n_estimators`, `max_features`, `max_leaf_nodes`, and `min_samples_leaf`. Change one, re-measure, form an opinion. That is the loop. We also impose a size limit, so you will have to make some choices!
 
-**A high score is very achievable.** You are scored on your raw metric values, similar to the previous assignment. Benchmark thoroughly on your own machine, then spend a submission when you have something worth testing.
+**A high score is very achievable.** You are scored on your raw metric values, similar to the previous assignment. Benchmark thoroughly on your own machine, then submit when you have something worth testing.
 
 **TIP: Read everything before getting started!**
 
@@ -331,7 +331,7 @@ How you get under the limit is your decision, which is part of the exercise! `ma
 
 On the Gradescope side, one more check runs before your score is fetched:
 
-- **Training file check**: your submission must contain a file named exactly `<netid>_rf.ipynb` or `<netid>_rf.py`, and it must have real content (a notebook with at least one cell, or a script with at least one line of code). Its *contents* are never inspected or graded. Check the filename against your netid before you upload. If you get it wrong, the fix is a rename and a re-upload of the same token, never a retrain, and it does not cost you a portal attempt.
+- **Training file check**: your submission must contain a file named exactly `<netid>_rf.ipynb` or `<netid>_rf.py`, and it must have real content (a notebook with at least one cell, or a script with at least one line of code). Its *contents* are never inspected or graded. Check the filename against your netid before you upload. If you get it wrong, the fix is a rename and a re-upload of the same token — it does not cost you a portal attempt.
 
 ### Step 2: Metrics
 
@@ -380,7 +380,7 @@ Extra credit on top of your base grade, uncapped by the 100-point ceiling. A per
 | 1 | +0.5 |
 | 0 (on the due date) | +0.0 |
 
-Each submission before the deadline banks a fresh tier, so getting a working artifact in early beats saving your attempts for the last minute.
+Since submissions are unlimited, getting a working artifact in early is easy to do and worth doing — it banks you a bonus tier and gives you real autograder feedback at no cost.
 
 ---
 
@@ -397,7 +397,7 @@ Each submission before the deadline banks a fresh tier, so getting a working art
 
 **This one just costs you a re-upload:**
 
-- Forgetting your `<netid>_rf.ipynb` / `<netid>_rf.py` on Gradescope, or naming it something else (`Untitled.ipynb`, `assignment2.py`, `rf.ipynb`, `<netid>rf.py`). Gradescope will reject the submission, but your token is still valid and your portal attempt is not consumed. Rename and upload again.
+- Forgetting your `<netid>_rf.ipynb` / `<netid>_rf.py` on Gradescope, or naming it something else (`Untitled.ipynb`, `assignment2.py`, `rf.ipynb`, `<netid>rf.py`). Gradescope will reject the submission, but your token is still valid and you can rename and upload again.
 
 **These quietly cost you points instead:**
 
@@ -412,7 +412,7 @@ Each submission before the deadline banks a fresh tier, so getting a working art
 
 ## Testing Locally
 
-Because your submissions are limited, **your local benchmarking is the real feedback loop**. Build it properly and you will know roughly what the autograder is going to tell you before you spend an attempt. Skip it and you are guessing with a resource you cannot get back.
+**Your local benchmarking is the real feedback loop.** Build it properly and you will know roughly what the autograder is going to tell you before you spend a submission. Since submissions are unlimited, there is no penalty for testing frequently — but local iteration is still faster and cheaper, so do your heavy tuning there and use portal submissions to confirm.
 
 At minimum: hold out a validation split (stratified on `attack_cat`), and print all 8 metrics plus a `classification_report` for every configuration you try. Keep a record. A short table of "what I changed, what happened to each metric" is worth more than a folder of forgotten experiments, and it is what lets you say *why* your final model is the one you submitted.
 
@@ -445,9 +445,9 @@ See here: [`feature_importances_`](https://scikit-learn.org/stable/auto_examples
 1. Load your CSV. Run `value_counts()` on `attack_cat` and look hard at what you are up against.
 2. Build the encoder, the classifier, and the pipeline that holds them. Fit both models with modest starting parameters.
 3. Split, evaluate, and print all 8 metrics plus the `classification_report`. Write the numbers down. Make any obvious fixes you spot.
-4. Save, verify with the reload snippet, and **submit once early**, even if the model is barely tuned. This is not a hedge, it is the point of having attempts. Your local checks tell you the model works in *your* environment; only a real submission tells you it survives one you do not control. It also banks you a bonus tier.
+4. Save, verify with the reload snippet, and **submit once early**, even if the model is barely tuned. Since submissions are unlimited this costs you nothing, and it confirms your pipeline survives the autograder's environment — something your local checks cannot guarantee. It also banks you an early-submission bonus tier.
 5. Do the real work locally. Attack the multi-class metrics, find the classes with zero (or poor) recall, and change one parameter at a time so you can attribute each result. Test against data from outside your training file.
-6. Refit your best configuration on your whole data set (if you can), save, verify, and submit again. Keep an eye on how many attempts you have left.
+6. Refit your best configuration on your whole data set (if you can), save, verify, and submit again.
 7. Rename your working notebook or script to `<netid>_rf.ipynb` / `<netid>_rf.py` and upload it to Gradescope with your `token.txt`.
 
 ---
@@ -458,15 +458,15 @@ Submitting takes **two steps, in two different places**. Do both: step 1 produce
 
 **The short version:**
 
-- **Portal** gets `randomForestModel.joblib` and nothing else. This is where your attempts are counted.
+- **Portal** gets `randomForestModel.joblib` and nothing else. Submissions are unlimited.
 - **Gradescope** gets `token.txt` plus `<netid>_rf.ipynb` or `<netid>_rf.py`.
 - The training file is never read or graded, but it is always checked.
 
-### How attempts are counted
+### How submissions work
 
-Each portal submission mints one token, and the portal enforces your limit by capping how many tokens it will issue. Your remaining attempts are displayed on the portal and on Gradescope.
+Submissions to the portal are **unlimited**. Each submission runs your model against the hidden test set and mints a new token tied to that result. You can resubmit as many times as you like before the deadline — for example, to improve your score after further tuning, or simply to confirm a fix worked.
 
-This means **a rejected Gradescope upload costs you nothing**. If you forget the training file or misname it, fix it and upload again with the same token. You have not lost an attempt. The scarce resource is running your model against real data on the portal, not the paperwork afterwards.
+This means **a rejected Gradescope upload costs you nothing at all**. If you forget the training file or misname it, fix it and upload again with the same token. The only resource to manage is your time.
 
 ### Step 1: Upload your model to the course portal
 
@@ -497,7 +497,7 @@ Both formats are accepted and neither is preferred. Submit a notebook if you wor
 | `jd42@nyu.edu` | `jd42_rf.ipynb` or `jd42_rf.py` |
 | `xy9876@nyu.edu` | `xy9876_rf.ipynb` or `xy9876_rf.py` |
 
-Not your vanity alias on nyu.edu but your actual netid! The autograder works out the expected filename from **your own Gradescope account**, so the name is unique to you and there is no list to look up. Just use your netid. A classmate's file will not pass under your name, and yours will not pass under theirs (besides the serious academic integrity issue that will ensue). 
+Not your vanity alias on nyu.edu but your actual netid! The autograder works out the expected filename from **your own Gradescope account**, so the name is unique to you and there is no list to look up. Just use your netid. A classmate's file will not pass under your name, and yours will not pass under theirs (besides the serious academic integrity issue that will ensue).
 
 What is enforced, precisely:
 
