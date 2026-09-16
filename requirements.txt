@@ -1,0 +1,20 @@
+# Random Forest Network Intrusion Detection — student environment
+#
+#     pip install -r requirements.txt
+#
+# Python 3.10 or newer. 
+# Train on the same versions listed here: 
+#    your submitted .joblib is unpickled by the grading environment, and a scikit-learn version mismatch can fail to load, or (worse) load and predict incorrectly.
+
+# Required 
+# scikit-learn is pinned exactly, not with >=, and this is the one line that matters most. 
+# joblib artifacts are not guaranteed to survive a version change:
+#   saving under a different minor release than the grader runs is the usual cause of "my model works locally but scored 0". Do not upgrade it.
+scikit-learn==1.6.1
+
+# Direct dependencies of scikit-learn; listed explicitly so the environment is
+# reproducible rather than implied.
+joblib==1.5.3
+numpy==2.2.6
+scipy==1.15.3
+threadpoolctl==3.6.0
