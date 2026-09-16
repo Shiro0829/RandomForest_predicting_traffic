@@ -304,7 +304,7 @@ Enforced automatically. Violations score **0**.
 | `dict` with exactly `binaryModel` and `multiclassModel` | Extra, missing, or misspelled keys |
 | A single `.joblib` from `joblib.dump(...)` uploaded to the **portal** | A `.py` file, a notebook, a zip, or a folder in place of the `.joblib` |
 | `binaryModel` on `label`, `multiclassModel` on `attack_cat` | `label` in the multi-class features, or `attack_cat` in the binary features |
-| Final file under 30 MB | Leaving `max_depth` unbounded |
+| Final file under 12 MB | Leaving `max_depth` unbounded |
 | `token.txt` **and** `<netid>_rf.ipynb` *or* `<netid>_rf.py` uploaded to **Gradescope** | A missing, misnamed, or empty training file |
 
 Everything about *how you get there* is otherwise unconstrained. Explore, plot, run a search if you want to. The constraints apply to what you submit, not to how you arrive at it, with the one exception that the work has to live in a notebook or script you hand in.
@@ -325,7 +325,7 @@ How you get under the limit is your decision, which is part of the exercise! `ma
 
 **Failing any of these scores a 0**, with an explanation printed:
 
-- **Size check**: the file must be under 30 MB.
+- **Size check**: the file must be under 12 MB.
 - **Artifact check**: it must load and be a `dict` with `binaryModel` and `multiclassModel`, each exposing a callable `.predict()`.
 - **Model type check**: the final estimator of each pipeline must be a `RandomForestClassifier`. A better-performing gradient booster still fails this check, because this assignment is specifically about random forests.
 
@@ -393,7 +393,8 @@ Since submissions are unlimited, getting a working artifact in early is easy to 
 - Wrong or misspelled dictionary keys.
 - Any estimator other than `RandomForestClassifier` as the final step.
 - Using `label` or `attack_cat` as an input feature.
-- A file over 30 MB.
+- A file over 12 MB.
+- Not meeting one of the other 'Rules and Constraints'
 
 **This one just costs you a re-upload:**
 
