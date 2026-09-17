@@ -311,7 +311,7 @@ Everything about *how you get there* is otherwise unconstrained. Explore, plot, 
 
 ### Model size
 
-Your finished `randomForestModel.joblib` is expected to come in **under 30 MB**, and the autograder checks this.
+Your finished `randomForestModel.joblib` is expected to come in **under 12 MB**, and the autograder checks this.
 
 The reason a file can blow past that is important to understand. One-hot encoding `proto` turns one column into 100+, and an unbounded tree keeps splitting until every leaf is pure, so each of your trees can end up with tens of thousands of nodes. Multiply by `n_estimators` and by two models in one file, and several hundred MB is easy to reach by accident.
 
