@@ -16,6 +16,6 @@ scikit-learn==1.6.1
 # reproducible rather than implied.
 joblib==1.5.3
 numpy==2.2.6
-scipy==1.15.3
+scipy==1.16.3
 threadpoolctl==3.6.0
 pandas==3.0.5
